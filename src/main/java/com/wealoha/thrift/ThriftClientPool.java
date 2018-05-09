@@ -285,10 +285,15 @@ public class ThriftClientPool<T extends TServiceClient> {
                 Object result = method.invoke(client.iFace(), args);
                 success = true;
                 return result;
-            } catch (Throwable e) {
-                logger.warn("invoke fail", e);
-                throw e;
-            } finally {
+            } 
+            catch (Throwable e){
+                throw e.getCause();
+            } 
+             //catch (Throwable e) {
+              //  logger.warn("invoke fail", e);
+               // throw e;
+            //} 
+              finally {
                 if (success) {
                     pool.returnObject(client);
                 } else {
