@@ -287,7 +287,7 @@ public class ThriftClientPool<T extends TServiceClient> {
                 return result;
             } 
             catch (Throwable e){
-                throw e.getCause();
+                throw e.getCause();//这里修改主要是 thrift自定义异常返回
             } 
              //catch (Throwable e) {
               //  logger.warn("invoke fail", e);
